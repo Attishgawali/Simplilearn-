@@ -1,0 +1,38 @@
+package com.simplilearn.jdbc.preparedstatement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import com.simplilearn.jdbc.util.JDBCUtil;
+
+public class selectPreparedStatement {
+
+	public static void main(String[] args) {
+
+		try {
+			Connection con = JDBCUtil.getMysqlConnection();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM EMPLOYEE;");
+			
+			ps.setInt(1,111);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				System.out.println("ID -"+rs.getInt(1)+ " "
+						+"AGE -"+rs.getInt(2)+ " "
+						+"FIRST NAME -"+rs.getString(3)+ " "
+						+"LAST NAME -"+rs.getString(4)+ " ");
+			}
+			
+			JDBCUtil.cleanup(con, ps);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+	}
+
+}

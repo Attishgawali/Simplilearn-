@@ -1,0 +1,29 @@
+package com.simplilearn.jdbc.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class JDBCUtil {
+	
+	//load driver class
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Error while loading Driver");
+		}
+	}
+	
+	
+	//Connection to sql
+	public staic Connection getConnection(){
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/StudentData","root","root12345");
+		return Connection;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.simplilearn.jdbc.util;
+
+public class JDBCUtil {
+
+}
