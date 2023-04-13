@@ -1,0 +1,22 @@
+package com.simplilearn.lms.client;
+
+import com.simplilearn.lms.service.BookService;
+
+public class LMSClient {
+
+	public static void main(String[] args) {
+		
+		/* 1. verify user */
+		
+		BookService bookservice = new BookService();
+		String status =bookservice.verifyUser("root", "root@123");
+		System.out.println(status);
+		
+		/* Add the book in LMS */
+		
+		String status2 = bookservice.addBook(101, "machine_learning", "Attish_Gawali", "NIRALI", 1400, 2280);
+		System.out.println(status2);
+
+
+	}
+}
