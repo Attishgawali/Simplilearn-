@@ -25,6 +25,11 @@ public class Book {
 		this.bookIsbn = bookIsbn;
 	}
 
+	public Book(int bookId, int bookPrice) {
+		super();
+		this.bookId = bookId;
+		this.bookPrice = bookPrice;
+	}
 
 	public int getBookId() {
 		return bookId;

@@ -3,8 +3,6 @@ package com.simplilearn.lms.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-
 import com.simplilearn.jdbc.util.JDBCUtil;
 import com.simplilearn.lms.book.Book;
 
@@ -53,7 +51,8 @@ public class BookService {
 	public int addBooks(Book book) {
 		int record = 0;
 		try {
-			
+			con = JDBCUtil.getMysqlConnection();
+
 			ps = con.prepareStatement("INSERT INTO BOOKS VALUES (?,?,?,?,?,?);");
 			
 			ps.setInt(1, book.getBookId());
@@ -71,6 +70,49 @@ public class BookService {
 		}
 		
 		return record;
+		
+	}
+	
+	
+	public int updateBooks(Book updatebook) {
+		System.out.println("***** START: updateBooks *****");
+		int records = 0;
+		
+		try {
+			
+			con=JDBCUtil.getMysqlConnection();
+			ps=con.prepareStatement("UPDATE BOOKS SET BOOK_PRICE = ? WHERE BOOK_ID = ?;");
+			ps.setInt(1, updatebook.getBookPrice());
+			ps.setInt(2, updatebook.getBookId());
+			records=ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error occured while updating the data in to BOOKS table");
+		}
+		System.out.println("***** END: updateBooks *****");
+		return records;
+		
+		
+	}
+	
+	public int deleteBook(Book deletebook) {
+		System.out.println("***** START: deleteBook *****");
+		int records = 0;
+		
+		try {
+			con=JDBCUtil.getMysqlConnection();
+			ps=con.prepareStatement("DELETE FROM BOOKS WHERE BOOK_ID = ?;");
+			ps.setInt(1, deletebook.getBookId());
+			records=ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error occured while deleting the data in to BOOKS table");
+		}
+		System.out.println("***** END: deleteBook *****");
+		return records;
+		
 		
 	}
 	
